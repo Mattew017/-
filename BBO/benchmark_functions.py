@@ -1,6 +1,5 @@
 
 
-
 # Beale Function
 def Beale(x):
     return (1.5 - x[0] + x[0]*x[1])**2 + (2.25 - x[0]+x[0]*x[1]**2)**2 + (2.625 - x[0] + x[0]*x[1]**3)**2
@@ -51,3 +50,7 @@ def F5(x):
     sum_of_squares /= dimention
     sum_of_cos /= dimention
     return -20*math.exp(-0.2*math.sqrt(sum_of_squares)) - math.exp(sum_of_cos) + 20 + math.exp(1)
+
+
+
+search_params = {F1:[-100, 100, 30], F4 : [-100, 100, 30}

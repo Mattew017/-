@@ -3,17 +3,10 @@ import math
 import time
 
 
-pop_size = 50
-count_of_iter = 1000
-mutation_probability = 0.01
-
-
-
-def BBO(F, search_params):
+def BBO(F, count_of_iter, pop_size, mutation_probability, search_params):
     left_bound = search_params[0]
     right_bound = search_params[1]
     dimention = search_params[2]
-    true_value = search_params[3]
     Population = [[random.uniform(left_bound, right_bound) for _ in range(dimention)] for _ in range(pop_size)]
     
     mu = [(pop_size + 1 - i)/(pop_size + 1)for i in range(pop_size)]  #иммиграция
@@ -21,12 +14,8 @@ def BBO(F, search_params):
 
     Population.sort(key = F)
     values = [F(x) for x in Population]
-    print(f'First Values {values[:5]}')
-    print(f'first population params {Population[0][:3]}')
-    generation = 0
     Island = [[0 for _ in range(dimention)] for _ in range(pop_size)]   #Временные острова
     for k in range(count_of_iter):
-    #while abs(abs(values[0]) - abs(true_value)) > accuracy:
 
         #Операция миграции
         for i in range(pop_size):
@@ -56,20 +45,11 @@ def BBO(F, search_params):
         #Сортировка по возрастанию F(X)
         Population.sort(key = F)
         values = [F(x) for x in Population]                           
-        generation += 1
-        #print(f'Generation {generation} values {values[:5]}')
-        #print(f' Generation {generation} answer params {Population[:5]}')
-        if generation % 10000 == 0:
-            print(f'generation {generation} value {values[0]}')
+
     # первые 3 лучших значения
     print(f'Total count of generations is {generation}' )
     print(f'Answer Values {values[0]}')
     print(f'Best Population params {Population[0]}')
-
-
-search_params = {F1:[-100, 100, 30], F4 : [-100, 100, 30}
-
-
 
 
 
