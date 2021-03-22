@@ -6,59 +6,8 @@ import time
 pop_size = 50
 count_of_iter = 1000
 mutation_probability = 0.01
-accuracy = 1
 
 
-# Beale Function
-def Beale(x):
-    return (1.5 - x[0] + x[0]*x[1])**2 + (2.25 - x[0]+x[0]*x[1]**2)**2 + (2.625 - x[0] + x[0]*x[1]**3)**2
-
-
-#Ackley N. 2 Function
-def Ackley(x):
-    return -200*math.exp(-0.2*math.sqrt(x[0]**2 + x[1]**2))
-
-
-def F1(x):
-    result = 0
-    for i in range(len(x)):
-        result += x[i]**2
-    return result
-
-
-def F2(x):
-    return max([abs(a) for a in x])
-
-
-def F3(x):
-    summa = 0
-    multi = 1
-    for a in x:
-        summa += abs(a)
-        multi *= abs(a)
-    return summa + multi 
-
-
-def F4(x):
-    multi = 1
-    summa = 0
-    i = 1
-    for a in x:
-        summa += a**2
-        multi *= math.cos(a/math.sqrt(i))
-    return summa/4000 - multi + 1
-
-
-def F5(x):
-    dimention = len(x)
-    sum_of_squares = 0
-    sum_of_cos = 0
-    for param in x:
-        sum_of_squares += param**2
-        sum_of_cos += math.cos(math.pi*param*2)
-    sum_of_squares /= dimention
-    sum_of_cos /= dimention
-    return -20*math.exp(-0.2*math.sqrt(sum_of_squares)) - math.exp(sum_of_cos) + 20 + math.exp(1)
 
 def BBO(F, search_params):
     left_bound = search_params[0]
@@ -116,21 +65,13 @@ def BBO(F, search_params):
     print(f'Total count of generations is {generation}' )
     print(f'Answer Values {values[0]}')
     print(f'Best Population params {Population[0]}')
-    #print(f'Answer Params {Population[0]}')
 
 
-search_params = {F1:[-100, 100, 30, 0], F4 : [-100, 100, 30, 0]}
+search_params = {F1:[-100, 100, 30], F4 : [-100, 100, 30}
 
 
 
-def main():
-    for function in search_params.keys():
-        print(f'BBO is optimizing {function.__name__}')
-        start_time = time.time()
-        BBO(function, search_params[function])
-        print(f'Dimention of function {search_params[F1][2]}')
-        print(f'time {time.time() - start_time}')
 
 
 if __name__ == '__main__':
-    main()
+    pass
